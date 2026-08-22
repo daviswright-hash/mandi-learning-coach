@@ -31,7 +31,7 @@ if (form) {
       data.get("message") || "",
     ];
     const subject = encodeURIComponent(
-      `Learning coach inquiry — ${data.get("grade") || "K-5"}`
+      `Learning Grove inquiry — ${data.get("grade") || "K-5"}`
     );
     const body = encodeURIComponent(lines.join("\n"));
     window.location.href = `mailto:orangemandimack@yahoo.com?subject=${subject}&body=${body}`;
