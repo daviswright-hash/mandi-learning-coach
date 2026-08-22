@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Facebook page kit · Mandi Thurmond, M.Ed.</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --navy:#173a5c; --teal:#3f8f8c; --cream:#f7f4ee; --ink:#243044; --line:#e4ddd2; --fb:#1877f2; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:"Source Sans 3",sans-serif; background:var(--cream); color:var(--ink); line-height:1.55; }
+    .wrap { width:min(980px, calc(100% - 32px)); margin:0 auto; }
+    header { background:var(--navy); color:#fff; padding:28px 0; }
+    header a { color:#cde7e6; }
+    h1 { font-family:"Playfair Display",Georgia,serif; margin:8px 0; }
+    h2 { font-family:"Playfair Display",Georgia,serif; color:var(--navy); }
+    .note { background:#fff3cd; border:1px solid #e6d28a; border-radius:14px; padding:14px 16px; margin:22px 0; }
+    .btn { display:inline-flex; align-items:center; gap:8px; background:var(--fb); color:#fff; text-decoration:none; padding:12px 18px; border-radius:999px; font-weight:700; border:0; cursor:pointer; font:inherit; font-weight:700; }
+    .btn-navy { background:var(--navy); }
+    .copy { float:right; background:var(--teal); color:#fff; border:0; border-radius:8px; padding:6px 10px; font-weight:700; cursor:pointer; }
+    .block { background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px; margin:16px 0 24px; white-space:pre-wrap; font-family:inherit; }
+    ol { padding-left:22px; }
+    ol li { margin:10px 0; }
+    .preview { background:#fff; border-radius:16px; overflow:hidden; border:1px solid var(--line); margin:24px 0 36px; box-shadow:0 16px 36px rgba(23,58,92,.1); }
+    .cover { width:100%; height:220px; object-fit:cover; background:var(--navy); }
+    .preview-body { padding:0 22px 22px; position:relative; }
+    .avatar { width:132px; height:132px; border-radius:50%; border:5px solid #fff; object-fit:cover; margin-top:-66px; background:#ddd; }
+    .pagename { font-size:1.6rem; font-weight:800; color:#050505; margin:8px 0 0; }
+    .cat { color:#65676b; margin:4px 0 12px; }
+    .cta { background:var(--fb); color:#fff; border:0; border-radius:8px; padding:8px 14px; font-weight:700; }
+    .posts { display:grid; gap:14px; }
+    .post { background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px; }
+    .post h3 { margin:0 0 8px; color:var(--navy); }
+    footer { padding:24px 0 40px; color:#5c6b7a; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p><a href="../index.html">← Back to the website</a></p>
+      <h1>Facebook page kit</h1>
+      <p>Everything Mandi needs to publish a professional Facebook Page in about ten minutes. Facebook does not let a website create the Page for you — she signs in and pastes this copy.</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <p class="note"><strong>Why this is a kit, not a live Page:</strong> only Mandi’s Facebook login can create and own the business Page. Use the button below, then copy each field from this page.</p>
+    <p>
+      <a class="btn" href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">Create the Facebook Page</a>
+      <a class="btn btn-navy" href="cover-photo.jpg" download>Download cover photo</a>
+      <a class="btn btn-navy" href="profile-photo.jpg" download>Download profile photo</a>
+    </p>
+
+    <h2>Preview</h2>
+    <div class="preview">
+      <img class="cover" src="cover-photo.jpg" alt="Facebook cover: Mandi beside a tutoring table" />
+      <div class="preview-body">
+        <img class="avatar" src="profile-photo.jpg" alt="Mandi Thurmond profile photo" />
+        <p class="pagename">Mandi Thurmond, M.Ed. | Elementary Learning Coach</p>
+        <p class="cat">Tutor · Education · Hixson, Tennessee</p>
+        <button class="cta" type="button">Call now</button>
+        <p>Licensed K–5 teacher &amp; learning coach. Reading, math, writing, homework help &amp; test prep. $40/hour. In-home, library, or coffee shop. Every child can learn.</p>
+      </div>
+    </div>
+
+    <h2>1. Create the Page</h2>
+    <ol>
+      <li>Open <a href="https://www.facebook.com/pages/create" target="_blank" rel="noopener">facebook.com/pages/create</a> while signed in as Mandi.</li>
+      <li>Choose <strong>Business or brand</strong> (or “Page”).</li>
+      <li>Paste the name, category, and bio below.</li>
+      <li>Upload <strong>profile-photo.jpg</strong> and <strong>cover-photo.jpg</strong> from this folder.</li>
+      <li>Add phone, email, website, and city. Turn on messaging.</li>
+      <li>Set the action button to <strong>Call now</strong> or <strong>Send message</strong>.</li>
+      <li>Publish the first three posts from the list at the bottom.</li>
+    </ol>
+
+    <h2>Page name <button class="copy" data-copy="name">Copy</button></h2>
+    <div class="block" id="name">Mandi Thurmond, M.Ed. | Elementary Learning Coach</div>
+
+    <h2>Username (vanity URL) <button class="copy" data-copy="user">Copy</button></h2>
+    <div class="block" id="user">MandiLearningCoach</div>
+    <p>This becomes facebook.com/MandiLearningCoach if it is available. Fallbacks: ThurmondLearningCoach or MandiK5Coach.</p>
+
+    <h2>Category</h2>
+    <div class="block">Tutor
+Education
+Private Tutor</div>
+
+    <h2>Short bio (About / intro) <button class="copy" data-copy="bio">Copy</button></h2>
+    <div class="block" id="bio">Licensed K–5 teacher &amp; learning coach in the Chattanooga area. 18 years in the classroom. Reading, math, writing, homework help &amp; test prep. $40/hour. In-home, library, or coffee shop. Every child can learn.</div>
+
+    <h2>Long description <button class="copy" data-copy="long">Copy</button></h2>
+    <div class="block" id="long">Amanda “Mandi” Thurmond, M.Ed. is a licensed elementary teacher, former literacy lead, curriculum developer, and intervention teacher with 18 years of classroom experience.
+
+She now coaches K–5 students one-on-one in Hixson, Red Bank, and greater Chattanooga — in your home, at the library, or at a quiet coffee shop.
+
+Supporting students in:
+• Reading — comprehension &amp; fluency
+• Math — concepts, confidence &amp; problem solving
+• Writing — expression, grammar &amp; organization
+• Homework help &amp; study skills
+• Test preparation
+
+$40 per hour. Personalized support. Lifelong confidence.
+
+Every child can learn. My job is to help them believe it.
+
+Call or text (929) 256-3772 (Google Voice)
+orangemandimack@yahoo.com</div>
+
+    <h2>Contact details to enter</h2>
+    <div class="block">Phone: (929) 256-3772
+Email: orangemandimack@yahoo.com
+Website: (add the site URL once it is live)
+City: Hixson, Tennessee
+Service area: Hixson, Red Bank, Chattanooga, Hamilton County
+Hours: By appointment
+Price range: $
+Action button: Call now</div>
+
+    <h2>First posts — paste these in order</h2>
+    <div class="posts">
+      <article class="post">
+        <h3>Post 1 — we’re open <button class="copy" data-copy="p1">Copy</button></h3>
+        <div class="block" id="p1">Helping students learn. Grow. Succeed.
+
+I’m Mandi Thurmond, M.Ed. — a licensed teacher with 18 years in the classroom — and I’m now coaching K–5 students one-on-one here in the Hixson / Chattanooga area.
+
+Reading • Math • Writing • Homework help • Test prep
+$40/hour
+In your home, at the library, or a coffee shop
+
+Every child can learn. My job is to help them believe it.
+
+Call or text (929) 256-3772 to book a session.</div>
+      </article>
+      <article class="post">
+        <h3>Post 2 — why one-on-one <button class="copy" data-copy="p2">Copy</button></h3>
+        <div class="block" id="p2">A struggling reader doesn’t need more worksheets. They need a plan that fits them.
+
+That’s what one-on-one learning coaching is: a licensed teacher sitting beside your child, noticing what clicks, and building from there.
+
+I work with grades K–5 on reading, math, writing, study skills, and test prep.
+
+If you’ve been wondering whether extra support would help, send a message. First conversation is easy.</div>
+      </article>
+      <article class="post">
+        <h3>Post 3 — about Mandi <button class="copy" data-copy="p3">Copy</button></h3>
+        <div class="block" id="p3">A little about me:
+
+Licensed teacher
+Master’s degree in Education
+18 years of classroom experience
+Former literacy lead
+Curriculum developer
+Intervention &amp; tutoring teacher
+
+I’ve spent my career helping elementary students find their footing — and their confidence. Now I bring that work to families in Hixson, Red Bank, and greater Chattanooga.
+
+$40/hour · grades K–5
+(929) 256-3772</div>
+      </article>
+      <article class="post">
+        <h3>Post 4 — reading tip <button class="copy" data-copy="p4">Copy</button></h3>
+        <div class="block" id="p4">Quick reading win for home:
+
+After a page, ask “What just happened?” — not a quiz, just a conversation. If your child can retell it in their own words, comprehension is taking root.
+
+If retelling feels hard, that’s useful information, not a verdict. Fluency and comprehension are skills we can coach.
+
+K–5 reading support · $40/hour · Chattanooga area</div>
+      </article>
+      <article class="post">
+        <h3>Post 5 — how to book <button class="copy" data-copy="p5">Copy</button></h3>
+        <div class="block" id="p5">Want to get started?
+
+1. Call or text (929) 256-3772
+2. Tell me your child’s grade and what you’d like help with
+3. We pick a place — your home, a library, or a coffee shop
+4. We begin
+
+orangemandimack@yahoo.com
+Hixson &amp; greater Chattanooga
+$40 per hour</div>
+      </article>
+    </div>
+
+    <h2>Photos to upload</h2>
+    <p>Use <strong>profile-photo.jpg</strong> as the circular profile picture and <strong>cover-photo.jpg</strong> as the cover (1640×624, the size Facebook wants). Optional extras: the website’s reading, math, and writing photos in <code>../assets/</code>.</p>
+  </main>
+  <footer class="wrap">Mandi Thurmond, M.Ed. · Elementary Learning Coach</footer>
+  <script>
+    document.querySelectorAll(".copy").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const id = btn.getAttribute("data-copy");
+        const text = document.getElementById(id).innerText;
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "Copied";
+        setTimeout(() => { btn.textContent = "Copy"; }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>
