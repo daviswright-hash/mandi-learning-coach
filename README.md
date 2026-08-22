@@ -1,6 +1,6 @@
 # Learning Grove
 
-Website and Facebook Page kit for **Learning Grove** — Amanda “Mandi” Thurmond’s K–5 learning-coach practice in Hixson / greater Chattanooga.
+Website and Facebook Page kit for **Learning Grove** — Amanda “Mandi” Thurmond’s K–5 learning-coach practice in Red Bank / greater Chattanooga.
 
 **Site:** [https://learninggrove.org](https://learninggrove.org)
 
@@ -42,7 +42,7 @@ Website field: **https://learninggrove.org**
 - Phone: (929) 256-3772 (Google Voice)
 - Rate: $40/hour
 - Grades: K–5
-- Area: Hixson, Red Bank, greater Chattanooga (home address is not on the site)
+- Area: Sessions at Mandi’s home in Red Bank (street address is not on the site; shared when families book)
 
 ## After the Facebook Page exists
 

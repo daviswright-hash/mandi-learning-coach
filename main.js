@@ -26,7 +26,7 @@ if (form) {
       `Phone: ${data.get("phone") || ""}`,
       `Grade: ${data.get("grade") || ""}`,
       `Support needed: ${needs.join(", ") || "not specified"}`,
-      `Preferred place: ${data.get("place") || ""}`,
+      `Location: Mandi's home in Red Bank`,
       "",
       data.get("message") || "",
     ];
