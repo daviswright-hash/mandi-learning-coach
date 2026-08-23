@@ -72,14 +72,14 @@
     <section class="hero" id="top">
       <div class="wrap hero-grid">
         <div>
-          <p class="kicker">Helping Students</p>
           <p class="learn-line">Learn. <span>Grow.</span> Succeed.</p>
           <h1>Learning <em>Grove</em></h1>
           <p class="lede">Personalized support. Lifelong confidence.</p>
           <p class="body">One child. One licensed teacher. A quiet room in Red Bank. Mandi Thurmond, M.Ed. has spent 18 years in elementary classrooms — as a literacy lead, curriculum developer, and intervention teacher — and now coaches K–5 students until the work starts to click.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">Book a first session</a>
-            <a class="btn btn-ghost" href="tel:+19292563772">(929) 256-3772</a>
+            <a class="btn btn-ghost" href="tel:+19292563772">Call (929) 256-3772</a>
+            <a class="btn btn-ghost" href="sms:+19292563772">Text Mandi</a>
           </div>
           <div class="meta-row">
             <span>Red Bank, Tennessee</span>
@@ -260,7 +260,7 @@
 
     <section class="section" id="about">
       <div class="wrap about-grid">
-        <img class="about-photo" src="assets/mandi-portrait.jpg" width="840" height="840" loading="lazy" alt="Portrait of Amanda Mandi Thurmond, M.Ed." />
+        <img class="about-photo" src="assets/facebook-cover.jpg" width="1640" height="624" loading="lazy" alt="Mandi at a tutoring table with books, pencils, and plants" />
         <div>
           <p class="section-kicker">Meet the teacher</p>
           <h2>Amanda “Mandi” Thurmond, M.Ed.</h2>
@@ -293,6 +293,10 @@
             <p>Your child. If they have a current book, a math page, or a teacher note that shows the struggle, bring that too. Mandi has materials.</p>
           </details>
           <details>
+            <summary>Can we text instead of email?</summary>
+            <p>Yes. Text (929) 256-3772. That’s a Google Voice number — calls and texts both reach Mandi.</p>
+          </details>
+          <details>
             <summary>How do we start?</summary>
             <p>Call or text (929) 256-3772, email orangemandimack@yahoo.com, or send the form below. Tell us the grade and what you’d like help with.</p>
           </details>
@@ -308,7 +312,8 @@
         <div class="contact-grid">
           <div class="contact-card">
             <p class="contact-line">✉️ <a href="mailto:orangemandimack@yahoo.com">orangemandimack@yahoo.com</a></p>
-            <p class="contact-line">📞 <a href="tel:+19292563772">(929) 256-3772</a><br /><small>Google Voice — calls and texts welcome</small></p>
+            <p class="contact-line">📞 <a href="tel:+19292563772">(929) 256-3772</a>
+              · <a href="sms:+19292563772">Text</a><br /><small>Google Voice — calls and texts welcome</small></p>
             <p class="contact-line">📍 Sessions at Mandi’s home in Red Bank, TN<br /><small>Address is shared when you book</small></p>
             <p>Evenings and flexible times by appointment. First message: grade, what you’d like help with, and two days that could work.</p>
           </div>
@@ -339,11 +344,13 @@
               <label><input type="checkbox" name="need" value="Homework" /> Homework / study skills</label>
               <label><input type="checkbox" name="need" value="Test prep" /> Test prep</label>
             </div>
+            <label for="days">Days that could work <span class="opt">(optional)</span></label>
+            <input id="days" name="days" placeholder="Tue / Thu after 4, Saturday morning…" />
             <label for="message">Anything we should know</label>
-            <textarea id="message" name="message" placeholder="Strengths, sticking points, days that work…"></textarea>
+            <textarea id="message" name="message" placeholder="Strengths, sticking points, what school has felt like…"></textarea>
             <p class="form-error" id="formError" hidden tabindex="-1">Please add your name, a valid email, and a grade.</p>
             <button class="btn btn-primary" type="submit">Send inquiry</button>
-            <p class="form-note" id="formNote">Your email app should open with a message ready for Learning Grove. If it doesn’t, write orangemandimack@yahoo.com.</p>
+            <p class="form-note" id="formNote">If an email window didn’t open, the message is copied — paste it to orangemandimack@yahoo.com or text (929) 256-3772.</p>
           </form>
         </div>
       </div>
@@ -366,6 +373,7 @@
 
   <div class="mobile-cta" id="mobileCta">
     <a class="btn btn-ghost" href="tel:+19292563772">Call</a>
+    <a class="btn btn-ghost" href="sms:+19292563772">Text</a>
     <a class="btn btn-primary" href="#contact">Book</a>
   </div>
   <script src="main.js"></script>
