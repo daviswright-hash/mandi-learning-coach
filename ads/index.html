@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Learning Grove — Ads that actually get booked</title>
+  <style>
+    :root { --navy:#173a5c; --teal:#3f8f8c; --cream:#f7f4ee; --ink:#243044; --line:#e4ddd2; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:"Segoe UI",sans-serif; background:var(--cream); color:var(--ink); line-height:1.55; }
+    .wrap { width:min(980px, calc(100% - 32px)); margin:0 auto; }
+    header { background:var(--navy); color:#fff; padding:32px 0 28px; }
+    header a { color:#cde7e6; }
+    h1,h2,h3 { font-family:Georgia,serif; color:var(--navy); }
+    header h1 { color:#fff; margin:8px 0; }
+    .copy { background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px 18px; white-space:pre-wrap; margin:10px 0 22px; }
+    .btn { display:inline-block; background:var(--teal); color:#fff; border:0; border-radius:8px; padding:6px 10px; font-weight:700; cursor:pointer; float:right; }
+    .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    figure { margin:0; background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+    figure img { width:100%; display:block; }
+    figcaption { padding:10px 12px; font-size:.9rem; }
+    table { width:100%; border-collapse:collapse; background:#fff; }
+    td,th { border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top; }
+    .note { background:#fff3cd; border-radius:12px; padding:14px 16px; }
+    ol li { margin:8px 0; }
+    footer { padding:28px 0 48px; color:#5c6b7a; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p><a href="../index.html">← Website</a></p>
+      <h1>Ads for max bookings</h1>
+      <p>Run these. Don’t invent a funnel. Local K–5 tutoring is won on Facebook/Instagram + Nextdoor + parent groups, with a text-to-book number.</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <p class="note"><strong>Spend here first:</strong> Meta (Facebook + Instagram) in a 10-mile ring around Red Bank. That is where Chattanooga-area parents actually see local services. Google Search is second. Nextdoor and school-area Facebook groups are free reach — post there every week.</p>
+
+    <h2>Where the money goes</h2>
+    <table>
+      <tr><th>Channel</th><th>Why</th><th>Start</th></tr>
+      <tr><td>Meta — Feed + Stories</td><td>Parents 28–45, evenings. Best paid reach for a $40 local teacher.</td><td>$10–15 / day</td></tr>
+      <tr><td>Nextdoor</td><td>Neighbors in Red Bank / Hixson / Signal Mountain. High trust, low cost.</td><td>Boost $5–10 / post</td></tr>
+      <tr><td>Google Search</td><td>Only people already typing “tutor.” Smaller volume, high intent.</td><td>$8 / day</td></tr>
+      <tr><td>Parent Facebook groups</td><td>Free exposure. Do not spam. One helpful post + the offer.</td><td>$0</td></tr>
+    </table>
+    <p>Do <strong>not</strong> start TikTok or YouTube until the Meta ads have 10+ messages. One channel, done well, beats five channels starved.</p>
+
+    <h2>Targeting (Meta)</h2>
+    <div class="copy" id="t1">Location: Red Bank, TN — 10 mile radius
+(covers Hixson, North Chattanooga, Signal Mountain, Riverview)
+
+Age: 28–48
+Gender: All
+Detailed targeting:
+• Parents of early school-age children (6–8)
+• Parents of preteens (8–12)
+AND/OR
+• Parents (all) + lives in that radius
+
+Exclude: people who already messaged (after week 2)
+
+Placement: Advantage+ (Facebook Feed, Instagram Feed, Stories, Reels)
+
+CTA button: Send message  OR  Call now
+Landing: https://daviswright-hash.github.io/mandi-learning-coach/
+Phone: (929) 256-3772</div>
+    <p>ZIPs to add if the map tool asks: <strong>37415, 37405, 37434</strong>. Nearby extras if you widen: 37343 (Hixson), 37377 (Signal Mountain).</p>
+    <p>Do not claim any school partnership. You may mention you serve families near Red Bank Elementary and Alpine Crest — as a location, not an endorsement.</p>
+
+    <h2>Creatives to upload</h2>
+    <p>Export PNGs from the HTML files in <code>creatives/</code> (open, screenshot, crop). Photos without extra type also work — put the words in the ad caption, not only on the image.</p>
+    <div class="grid">
+      <figure>
+        <img src="photos/homework-night.jpg" alt="Homework still out at night" />
+        <figcaption>Pain ad. Use with Copy A. Highest click-through for parents.</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/mandi-warm.jpg" alt="Mandi" />
+        <figcaption>Trust ad. Face of a real teacher. Use with Copy B.</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/calm-table.jpg" alt="Calm tutoring table" />
+        <figcaption>After ad. The hour at the house. Use with Copy C.</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/cover.jpg" alt="Mandi at the table" />
+        <figcaption>Landscape / Google Display / Nextdoor photo.</figcaption>
+      </figure>
+    </div>
+    <p>HTML layouts (exact type):</p>
+    <ul>
+      <li><a href="creatives/feed-homework.html">1080×1080 homework</a></li>
+      <li><a href="creatives/feed-mandi.html">1080×1080 Mandi</a></li>
+      <li><a href="creatives/ig-portrait.html">1080×1350 Instagram</a></li>
+      <li><a href="creatives/story.html">1080×1920 Story / Reel cover</a></li>
+      <li><a href="creatives/landscape.html">1200×628 landscape</a></li>
+    </ul>
+
+    <h2>Meta copy — paste these. Run all three. Kill losers after 5 days.</h2>
+
+    <h3>A — Homework (winner pattern for local tutors) <button class="btn" data-id="a">Copy</button></h3>
+    <div class="copy" id="a">Primary text:
+Homework still going at 8pm?
+
+That’s not a lazy kid. That’s a child who needs a plan that fits them.
+
+I’m Mandi Thurmond, M.Ed. — licensed teacher, 18 years in elementary classrooms. Learning Grove is one-on-one K–5 coaching at my house in Red Bank. Reading, math, writing, homework, test prep.
+
+$40/hour. Address when you book.
+
+Text (929) 256-3772
+
+Headline: Homework still going at 8?
+Description: Licensed K–5 teacher in Red Bank. $40/hour.</div>
+
+    <h3>B — Licensed teacher (trust) <button class="btn" data-id="b">Copy</button></h3>
+    <div class="copy" id="b">Primary text:
+Not a college kid with a worksheet packet.
+
+Learning Grove is Mandi Thurmond, M.Ed. — licensed teacher, former literacy lead, 18 years in the classroom — coaching one K–5 student at a time in Red Bank.
+
+$40/hour. At my house. Reading, math, writing, study skills, test prep.
+
+Text (929) 256-3772 and tell me the grade.
+
+Headline: A licensed teacher. $40/hour.
+Description: K–5 coaching in Red Bank. One child. One hour.</div>
+
+    <h3>C — Local + easy start <button class="btn" data-id="c">Copy</button></h3>
+    <div class="copy" id="c">Primary text:
+Red Bank / Hixson parents:
+
+If reading is slow, math melts down, or homework takes over the night — I have an hour for that.
+
+Learning Grove. K–5. $40/hour. My house in Red Bank (address when we book).
+
+Call or text (929) 256-3772.
+
+Headline: K–5 help in Red Bank
+Description: First hour is $40. Text to book.</div>
+
+    <h2>Google Search ads</h2>
+    <p>Campaign type: Search. Location: 12 miles around Red Bank, TN. Networks: Search only (turn off Display). Keywords:</p>
+    <div class="copy" id="kw">tutor red bank tn
+elementary tutor chattanooga
+k-5 tutor near me
+reading tutor red bank
+math tutor hixson tn
+licensed teacher tutor chattanooga
+homework help elementary chattanooga
+[Red Bank elementary tutor]
+[tutor for 3rd grade chattanooga]</div>
+    <p>Match: phrase + exact. Add negative keywords: jobs, salary, college, SAT, ACT, Kumon franchise, free.</p>
+    <h3>Responsive search ad <button class="btn" data-id="g">Copy</button></h3>
+    <div class="copy" id="g">Headlines (30 characters or less):
+K–5 Tutor in Red Bank
+Licensed Teacher · $40/hr
+Homework Help That Fits
+Reading Tutor · Red Bank
+Math Help for Grades K–5
+Amanda Thurmond, M.Ed.
+One Child. One Hour.
+Stop the 8pm Homework
+Chattanooga Area K–5
+Text to Book a Session
+Quiet House. Real Teacher.
+Elementary Learning Coach
+Red Bank Learning Grove
+First Hour Is $40
+Call (929) 256-3772
+
+Descriptions:
+Licensed K–5 teacher. Reading, math, writing, test prep. Sessions at my Red Bank house.
+$40/hour, one-on-one. Text (929) 256-3772. Address shared when you book.
+18 years in elementary classrooms. Not a tutoring chain. Just a teacher.
+If homework has taken over the night, let’s fix the skill — not the evening.</div>
+
+    <h2>Nextdoor (post this Thursday evening)</h2>
+    <div class="copy" id="n">Hi neighbors — I’m Mandi Thurmond, a licensed teacher with an M.Ed. and 18 years in elementary classrooms.
+
+I started Learning Grove for K–5 students here in Red Bank: reading, math, writing, homework, and test prep. One-on-one, $40/hour, at my house (I’ll send the address when we book).
+
+If your evenings are disappearing into homework, text me at (929) 256-3772.
+
+Happy to answer questions in the comments.</div>
+
+    <h2>Facebook / Instagram group post (organic, max free exposure)</h2>
+    <div class="copy" id="grp">Post in local parent / neighborhood groups (once, then reply to comments — don’t drop the same block every day):
+
+“If homework is still going at 8pm, that’s usually a skill gap, not a motivation gap.
+
+I’m a licensed K–5 teacher in Red Bank (M.Ed., 18 years in the classroom). Learning Grove is one-on-one coaching at my house — $40/hour.
+
+Text (929) 256-3772 if you want a first hour. Happy to tell you if I’m the right fit.”</div>
+
+    <h2>How to launch in 45 minutes</h2>
+    <ol>
+      <li>Create the Facebook Page (use the kit in <a href="../facebook/index.html">../facebook/</a>).</li>
+      <li>Meta Ads Manager → Create → Sales or Leads → Messages + Calls.</li>
+      <li>One campaign, three ad sets only if budget ≥ $30/day. Otherwise <strong>one ad set, three ads</strong> (A, B, C) and let Meta pick.</li>
+      <li>Upload the photos. Paste copy A/B/C. CTA: Send message. Pixel: skip for now.</li>
+      <li>Radius 10 miles, parents 28–48.</li>
+      <li>Nextdoor post the same day. Group posts the next morning.</li>
+      <li>Google Search only after Meta is live, if you still have budget.</li>
+      <li>After 5 days: turn off any ad with CTR under ~1% or zero messages. Keep the winner. Make two new versions of the winner.</li>
+    </ol>
+
+    <h2>Rules that protect results</h2>
+    <ul>
+      <li>Always show the price. $40/hour filters tire-kickers and beats chains.</li>
+      <li>Always show her face. Local services convert on a real adult.</li>
+      <li>Always offer text. Parents will not fill a long form at 9pm.</li>
+      <li>Never fake reviews or “limited spots” unless it’s true.</li>
+      <li>Never put the street address on the ad.</li>
+      <li>Reply to every message within an hour in the evening. Speed is the close.</li>
+    </ul>
+  </main>
+  <footer class="wrap">Learning Grove · (929) 256-3772 · Red Bank, TN</footer>
+  <script>
+    document.querySelectorAll(".btn[data-id]").forEach((b) => {
+      b.addEventListener("click", async () => {
+        const el = document.getElementById(b.getAttribute("data-id"));
+        await navigator.clipboard.writeText(el.innerText);
+        b.textContent = "Copied";
+        setTimeout(() => { b.textContent = "Copy"; }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>
