@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daviswright-hash.github.io/mandi-learning-coach/sitemap.xml
+Disallow: /facebook/
