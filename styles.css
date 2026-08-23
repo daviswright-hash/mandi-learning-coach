@@ -491,19 +491,31 @@ input, select, textarea {
   font-size: 16px;
   background: #fff;
 }
+input[type="checkbox"] {
+  width: 1.1em;
+  height: 1.1em;
+  padding: 0;
+  flex-shrink: 0;
+  accent-color: var(--navy);
+}
 textarea { min-height: 120px; resize: vertical; }
 .checks-inline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 16px;
-  margin: 8px 0 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 14px;
+  margin: 8px 0 16px;
 }
 .checks-inline label {
   font-weight: 600;
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
+  white-space: nowrap;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
 }
 .label-like {
   display: block;
@@ -585,6 +597,7 @@ textarea { min-height: 120px; resize: vertical; }
   .mobile-cta.is-hidden { display: none; }
   body { padding-bottom: 88px; }
   .site-footer { padding-bottom: 28px; }
+  .checks-inline { grid-template-columns: 1fr; }
 }
 
 #why, #about { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
