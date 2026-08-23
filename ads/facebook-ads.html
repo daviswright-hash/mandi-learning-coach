@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Facebook ads · Learning Grove</title>
+  <style>
+    :root { --navy:#173a5c; --teal:#3f8f8c; --cream:#f7f4ee; --ink:#243044; --line:#e4ddd2; --fb:#1877f2; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:"Segoe UI",sans-serif; background:var(--cream); color:var(--ink); line-height:1.5; }
+    .wrap { width:min(980px, calc(100% - 32px)); margin:0 auto; }
+    header { background:#1877f2; color:#fff; padding:28px 0; }
+    header a { color:#dbeafe; }
+    h1,h2,h3 { color:var(--navy); }
+    header h1 { color:#fff; margin:6px 0; }
+    .copy { background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px; white-space:pre-wrap; margin:8px 0 20px; }
+    .btn { float:right; background:var(--teal); color:#fff; border:0; border-radius:8px; padding:6px 10px; font-weight:700; cursor:pointer; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    @media (max-width:800px){ .grid{grid-template-columns:1fr 1fr} }
+    figure { margin:0; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+    figure img { width:100%; display:block; }
+    figcaption { padding:10px 12px; font-size:.88rem; }
+    ol li { margin:8px 0; }
+    .note { background:#e8f1ff; border-radius:12px; padding:14px; }
+    table { width:100%; border-collapse:collapse; background:#fff; }
+    td,th { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p><a href="../index.html">Website</a> · <a href="index.html">All ads</a></p>
+      <h1>Facebook ads — upload these</h1>
+      <p>Three feed ads + one Story. One campaign. Text-to-book. 45 minutes to go live.</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <p class="note"><strong>I cannot publish inside Ads Manager for you</strong> — Facebook requires Mandi’s login. Use this page as the kit: images in <code>exports/</code>, copy below, settings in the table.</p>
+
+    <h2>1. Images to upload</h2>
+    <p>Right-click → Save, or grab them from the <code>ads/exports</code> folder on this computer.</p>
+    <div class="grid">
+      <figure>
+        <img src="exports/fb-45-homework.png" alt="Homework ad" />
+        <figcaption><strong>Ad 1 — homework</strong><br />1080×1350 · Facebook Feed (best size)</figcaption>
+      </figure>
+      <figure>
+        <img src="exports/fb-45-mandi.png" alt="Mandi ad" />
+        <figcaption><strong>Ad 2 — teacher</strong><br />1080×1350 · Feed</figcaption>
+      </figure>
+      <figure>
+        <img src="exports/fb-45-accelerated.png" alt="Accelerated ad" />
+        <figcaption><strong>Ad 3 — accelerated</strong><br />1080×1350 · Feed</figcaption>
+      </figure>
+      <figure>
+        <img src="exports/fb-square-price.png" alt="Price ad" />
+        <figcaption><strong>Ad 4 — price</strong><br />1080×1080 · Feed / Right column</figcaption>
+      </figure>
+      <figure>
+        <img src="exports/story.png" alt="Story ad" />
+        <figcaption><strong>Ad 5 — Story / Reels</strong><br />1080×1920</figcaption>
+      </figure>
+      <figure>
+        <img src="exports/feed-mandi.png" alt="Square Mandi" />
+        <figcaption><strong>Backup square</strong><br />1080×1080</figcaption>
+      </figure>
+    </div>
+
+    <h2>2. Ads Manager setup</h2>
+    <table>
+      <tr><th>Field</th><th>Enter this</th></tr>
+      <tr><td>Objective</td><td>Leads → or Engagement → <strong>Messages</strong> (best). Alternate: Traffic to the website.</td></tr>
+      <tr><td>Conversion</td><td>Messenger / Instagram DMs, or Call</td></tr>
+      <tr><td>Daily budget</td><td>$10–15 to start</td></tr>
+      <tr><td>Location</td><td>Red Bank, TN · <strong>10 mile radius</strong></td></tr>
+      <tr><td>Age</td><td>28–48</td></tr>
+      <tr><td>Detailed targeting</td><td>Parents of early school-age children (6–8) and Parents of preteens (8–12)</td></tr>
+      <tr><td>Placements</td><td>Advantage+ (Feed, Stories, Reels, Instagram)</td></tr>
+      <tr><td>CTA button</td><td><strong>Send message</strong> or <strong>Call now</strong></td></tr>
+      <tr><td>Website (if asked)</td><td>https://daviswright-hash.github.io/mandi-learning-coach/</td></tr>
+      <tr><td>Phone</td><td>(929) 256-3772</td></tr>
+    </table>
+    <p>One campaign → one ad set → <strong>all five ads</strong> in that ad set. Facebook will spend on the winners.</p>
+
+    <h2>3. Copy — one block per ad</h2>
+
+    <h3>Ad 1 · Homework <button class="btn" data-id="a1">Copy</button></h3>
+    <div class="copy" id="a1">Primary text:
+Homework still going at 8pm?
+
+That’s not a lazy kid. That’s a child who needs a plan that fits them.
+
+I’m Mandi Thurmond, M.Ed. — licensed teacher, 18 years in elementary classrooms. Learning Grove is one-on-one K–5 coaching at my house in Red Bank. Reading, math, writing, homework, test prep, and stretch work for accelerated students.
+
+$40/hour. Address when you book.
+
+Text (929) 256-3772
+
+Headline: Homework still going at 8?
+Description: Licensed K–5 teacher in Red Bank. $40/hour.
+CTA: Send message</div>
+
+    <h3>Ad 2 · Licensed teacher <button class="btn" data-id="a2">Copy</button></h3>
+    <div class="copy" id="a2">Primary text:
+Not a college kid with a worksheet packet.
+
+Learning Grove is Mandi Thurmond, M.Ed. — licensed teacher, former literacy lead, 18 years in the classroom — coaching one K–5 student at a time in Red Bank.
+
+Catch-up, stuck, or already ahead. $40/hour. At my house.
+
+Text (929) 256-3772 and tell me the grade.
+
+Headline: A licensed teacher. $40/hour.
+Description: K–5 coaching in Red Bank. One child. One hour.
+CTA: Call now</div>
+
+    <h3>Ad 3 · Accelerated <button class="btn" data-id="a3">Copy</button></h3>
+    <div class="copy" id="a3">Primary text:
+Done in ten minutes — then bored?
+
+Accelerated K–5 students still need a teacher, just a harder one. Deeper reading. Richer math. Real writing. Not extra packets of the same work.
+
+Learning Grove. Mandi Thurmond, M.Ed. $40/hour. Red Bank house.
+
+Text (929) 256-3772
+
+Headline: Already ahead? Let’s stretch.
+Description: Enrichment for K–5. $40/hour in Red Bank.
+CTA: Send message</div>
+
+    <h3>Ad 4 · Price <button class="btn" data-id="a4">Copy</button></h3>
+    <div class="copy" id="a4">Primary text:
+$40 an hour. A licensed teacher. Your child only.
+
+No packages. No franchise. Learning Grove in Red Bank — K–5 reading, math, writing, test prep, and accelerated learners.
+
+Text (929) 256-3772 to book the first hour.
+
+Headline: $40/hour · Red Bank
+Description: One-on-one K–5. Address when you book.
+CTA: Call now</div>
+
+    <h3>Ad 5 · Story / Reels (keep caption short) <button class="btn" data-id="a5">Copy</button></h3>
+    <div class="copy" id="a5">When homework turns into a fight.
+
+Licensed K–5 teacher in Red Bank. $40/hour. Text (929) 256-3772.</div>
+
+    <h2>4. Click-by-click</h2>
+    <ol>
+      <li>Open <a href="https://adsmanager.facebook.com/" target="_blank" rel="noopener">adsmanager.facebook.com</a> while logged in as Mandi, with the Learning Grove Page selected.</li>
+      <li>Create → Messages (or Leads) → Continue.</li>
+      <li>Budget $10–15/day · Advantage campaign on.</li>
+      <li>Audience: Red Bank TN, 10 miles, age 28–48, parents of 6–12 year olds.</li>
+      <li>Add 5 ads. Upload the matching PNG. Paste the matching copy. CTA Send message on 1, 3, 5 and Call now on 2 and 4.</li>
+      <li>Publish. Reply to every message the same evening.</li>
+      <li>Day 5: turn off anything with $0 results. Duplicate the winner twice with a new first line.</li>
+    </ol>
+  </main>
+  <script>
+    document.querySelectorAll(".btn[data-id]").forEach((b) => {
+      b.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(document.getElementById(b.getAttribute("data-id")).innerText);
+        b.textContent = "Copied";
+        setTimeout(() => { b.textContent = "Copy"; }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>
