@@ -2,10 +2,9 @@
 
 Website and Facebook Page kit for **Scenic City Learning** — Amanda “Mandi” Thurmond’s K–5 learning-coach practice in Red Bank / greater Chattanooga.
 
-**Live today:** [https://daviswright-hash.github.io/mandi-learning-coach/](https://daviswright-hash.github.io/mandi-learning-coach/)
-
-**Custom domain (after Porkbun checkout):** [https://sceniccitylearning.com](https://sceniccitylearning.com)  
-**Redirect:** [https://chattanoogalearning.com](https://chattanoogalearning.com) → sceniccitylearning.com
+**Site:** [https://sceniccitylearning.com](https://sceniccitylearning.com)  
+**Redirect:** [https://chattanoogalearning.com](https://chattanoogalearning.com) → sceniccitylearning.com  
+**GitHub Pages source:** [https://daviswright-hash.github.io/mandi-learning-coach/](https://daviswright-hash.github.io/mandi-learning-coach/)
 
 ## Open the site locally
 
@@ -26,11 +25,11 @@ Then visit http://localhost:8787
 
 ## Point the domain (Porkbun)
 
-Buy `sceniccitylearning.com` and `chattanoogalearning.com`. Then:
+Both domains are registered. DNS:
 
-1. **sceniccitylearning.com** DNS: four GitHub Pages A records on `@` (`185.199.108.153`–`111.153`) and `www` CNAME to `daviswright-hash.github.io`.
-2. Add a `CNAME` file in this repo containing `sceniccitylearning.com` **only after** the domain is registered — adding it earlier breaks github.io.
-3. **chattanoogalearning.com**: Porkbun URL Forward, 301 to `https://sceniccitylearning.com`.
+1. **sceniccitylearning.com:** delete `pixie.porkbun.com` records. Four A records on `@` (`185.199.108.153`–`111.153`) and `www` CNAME to `daviswright-hash.github.io`.
+2. Repo `CNAME` file is `sceniccitylearning.com`.
+3. **chattanoogalearning.com:** Porkbun URL Forward, 301 to `https://sceniccitylearning.com`.
 
 ## Facebook Page
 

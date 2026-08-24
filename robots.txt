@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://daviswright-hash.github.io/mandi-learning-coach/sitemap.xml
+Sitemap: https://sceniccitylearning.com/sitemap.xml
 Disallow: /facebook/
