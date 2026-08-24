@@ -72,7 +72,7 @@ if (form) {
       data.get("message") || "",
     ];
     const message = lines.join("\n");
-    const subject = `Learning Grove inquiry — ${grade}`;
+    const subject = `Scenic City Learning inquiry — ${grade}`;
     try {
       await navigator.clipboard.writeText(
         `${subject}\n\n${message}\n\norangemandimack@yahoo.com`

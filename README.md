@@ -1,8 +1,11 @@
-# Learning Grove
+# Scenic City Learning
 
-Website and Facebook Page kit for **Learning Grove** — Amanda “Mandi” Thurmond’s K–5 learning-coach practice in Red Bank / greater Chattanooga.
+Website and Facebook Page kit for **Scenic City Learning** — Amanda “Mandi” Thurmond’s K–5 learning-coach practice in Red Bank / greater Chattanooga.
 
-**Site:** [https://learninggrove.org](https://learninggrove.org)
+**Live today:** [https://daviswright-hash.github.io/mandi-learning-coach/](https://daviswright-hash.github.io/mandi-learning-coach/)
+
+**Custom domain (after Porkbun checkout):** [https://sceniccitylearning.com](https://sceniccitylearning.com)  
+**Redirect:** [https://chattanoogalearning.com](https://chattanoogalearning.com) → sceniccitylearning.com
 
 ## Open the site locally
 
@@ -19,25 +22,27 @@ Then visit http://localhost:8787
 - `index.html` — public website (services, about, $40/hour, booking form)
 - `facebook/index.html` — copy-paste kit to create the Facebook Page
 - `facebook/profile-photo.jpg` and `facebook/cover-photo.jpg` — ready to upload
-- `CNAME` — points GitHub Pages at learninggrove.org
 - Brand assets in `assets/`
 
-## Point the domain
+## Point the domain (Porkbun)
 
-1. At the registrar, set `learninggrove.org` (and `www`) to GitHub Pages, Netlify, or whatever host you use.
-2. Keep the `CNAME` file in this folder if you publish with GitHub Pages.
+Buy `sceniccitylearning.com` and `chattanoogalearning.com`. Then:
+
+1. **sceniccitylearning.com** DNS: four GitHub Pages A records on `@` (`185.199.108.153`–`111.153`) and `www` CNAME to `daviswright-hash.github.io`.
+2. Add a `CNAME` file in this repo containing `sceniccitylearning.com` **only after** the domain is registered — adding it earlier breaks github.io.
+3. **chattanoogalearning.com**: Porkbun URL Forward, 301 to `https://sceniccitylearning.com`.
 
 ## Facebook Page
 
 Facebook requires Mandi to create the Page while signed in. Open `facebook/index.html` and use **Create the Facebook Page**. Every field, bio, and the first five posts are ready to copy.
 
-Suggested Page name: **Learning Grove**  
-Suggested username: **LearningGrove**  
-Website field: **https://learninggrove.org**
+Suggested Page name: **Scenic City Learning**  
+Suggested username: **ScenicCityLearning**  
+Website field: **https://sceniccitylearning.com**
 
 ## Contact
 
-- Website: https://learninggrove.org
+- Website: https://sceniccitylearning.com
 - Email: orangemandimack@yahoo.com
 - Phone: (929) 256-3772 (Google Voice)
 - Rate: $40/hour
@@ -46,4 +51,4 @@ Website field: **https://learninggrove.org**
 
 ## After the Facebook Page exists
 
-Replace the “Facebook page kit” footer link on the website with the live Page URL (for example `https://www.facebook.com/LearningGrove`).
+Replace the “Facebook page kit” footer link on the website with the live Page URL (for example `https://www.facebook.com/ScenicCityLearning`).

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
-  <title>Learning Grove kit for Mandi</title>
+  <title>Scenic City Learning kit for Mandi</title>
   <style>
     :root { --navy:#173a5c; --teal:#3f8f8c; --cream:#f7f4ee; --ink:#243044; --line:#e4ddd2; }
     * { box-sizing: border-box; }
@@ -25,7 +25,7 @@
   <header>
     <div class="wrap">
       <p style="margin:0;opacity:.8">Private kit · not on the public menu</p>
-      <h1>Your Learning Grove kit</h1>
+      <h1>Your Scenic City Learning kit</h1>
       <p>Website, Facebook Page, and Facebook ads — ready to use.</p>
     </div>
   </header>
@@ -34,16 +34,37 @@
 
     <div class="card">
       <h2 style="margin-top:0">The business, in one look</h2>
-      <p><strong>Learning Grove</strong> · Amanda Thurmond, M.Ed.<br />
+      <p><strong>Scenic City Learning</strong> · Amanda Thurmond, M.Ed.<br />
       K–5 one-on-one · reading, math, writing, homework, test prep, accelerated students<br />
       <strong>$40/hour</strong> · at your house in <strong>Red Bank</strong> · address given when they book<br />
       Call/text <a href="tel:+19292563772">(929) 256-3772</a> · <a href="mailto:orangemandimack@yahoo.com">orangemandimack@yahoo.com</a></p>
     </div>
 
-    <h2>1. Website (live)</h2>
+    <h2>0. Buy the domains (Davis)</h2>
+    <div class="card">
+      <p>Register both at <a href="https://porkbun.com/checkout/search?q=sceniccitylearning.com">Porkbun</a> (~$10–12 each, first year):</p>
+      <ol>
+        <li>Buy <strong>sceniccitylearning.com</strong> — this is the real site.</li>
+        <li>Buy <strong>chattanoogalearning.com</strong> — this only redirects.</li>
+        <li>On <strong>sceniccitylearning.com</strong> → Details → DNS Records. Delete Porkbun’s default parking / l.ink records. Add GitHub Pages:
+          <ul>
+            <li>A @ → <code>185.199.108.153</code></li>
+            <li>A @ → <code>185.199.109.153</code></li>
+            <li>A @ → <code>185.199.110.153</code></li>
+            <li>A @ → <code>185.199.111.153</code></li>
+            <li>CNAME www → <code>daviswright-hash.github.io</code></li>
+          </ul>
+        </li>
+        <li>On <strong>chattanoogalearning.com</strong> → Details → URL Forwarding. Permanent (301) to <code>https://sceniccitylearning.com</code>. Include www.</li>
+        <li>Tell Davis the checkout is done so the GitHub CNAME can be added. Do not add the CNAME before the domain is paid — it will break the github.io site.</li>
+      </ol>
+    </div>
+
+    <h2>1. Website (live today)</h2>
     <div class="card">
       <p><a href="./">https://daviswright-hash.github.io/mandi-learning-coach/</a></p>
-      <p>Parents can read about you, pick services (including accelerated students), and send a booking email or call/text. Share this link anywhere.</p>
+      <p>After DNS: <strong>https://sceniccitylearning.com</strong> · <strong>https://chattanoogalearning.com</strong> redirects there.</p>
+      <p>Parents can read about you, pick services (including accelerated students), and send a booking email or call/text.</p>
     </div>
 
     <h2>2. Facebook Page (you create this while logged in)</h2>
@@ -52,8 +73,8 @@
       <p><a href="facebook/index.html">Facebook Page kit</a> · photos to upload are in that folder (profile + cover).</p>
       <ol>
         <li>Go to <a href="https://www.facebook.com/pages/create">facebook.com/pages/create</a></li>
-        <li>Page name: <strong>Learning Grove</strong></li>
-        <li>Username to try: <strong>LearningGrove</strong></li>
+        <li>Page name: <strong>Scenic City Learning</strong></li>
+        <li>Username to try: <strong>ScenicCityLearning</strong></li>
         <li>Upload profile + cover from the kit</li>
         <li>Paste the About text and the first posts</li>
         <li>Phone (929) 256-3772 · website = the live link above · city Red Bank, TN</li>
@@ -83,6 +104,6 @@
       <li>Reply to every text/message the same evening.</li>
     </ol>
   </main>
-  <footer class="wrap">Made for Mandi · Learning Grove · Red Bank, TN</footer>
+  <footer class="wrap">Made for Mandi · Scenic City Learning · Red Bank, TN</footer>
 </body>
 </html>
