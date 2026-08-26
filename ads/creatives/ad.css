@@ -16,7 +16,7 @@ h1 { font-family: "Playfair Display", Georgia, serif; font-size: 64px; line-heig
   font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
   padding: 14px 22px; border-radius: 999px; font-size: 22px;
 }
-.logo { position: absolute; top: 36px; left: 40px; color: #fff; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-size: 22px; }
+.logo { position: absolute; top: 36px; left: 40px; color: #fff; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 20px; }
 .price {
   position: absolute; top: 28px; right: 28px; background: #3f8f8c; color: #fff;
   border-radius: 18px; padding: 14px 18px; text-align: center; font-weight: 800;
