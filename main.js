@@ -39,6 +39,91 @@ if (contact && mobileCta && "IntersectionObserver" in window) {
   io.observe(contact);
 }
 
+const escapeHtml = (value) =>
+  String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+const testimonialList = document.getElementById("testimonialList");
+if (testimonialList) {
+  const emptyMarkup = `
+    <div class="review-empty">
+      <strong>No public notes yet — you can be the first.</strong>
+      <p>Use the form to send a recommendation. Mandi reads every message. If you check the box, your first name and words can appear here.</p>
+    </div>`;
+  fetch("testimonials.json", { cache: "no-store" })
+    .then((res) => (res.ok ? res.json() : Promise.reject()))
+    .then((data) => {
+      const items = Array.isArray(data.items) ? data.items : [];
+      if (!items.length) {
+        testimonialList.innerHTML = emptyMarkup;
+        return;
+      }
+      testimonialList.innerHTML = items
+        .map((item) => {
+          const quote = escapeHtml(item.quote || "");
+          const name = escapeHtml(item.name || "A family");
+          const detail = escapeHtml(item.detail || "");
+          return `<article class="review-card">
+            <p class="review-mark" aria-hidden="true">“</p>
+            <blockquote>${quote}</blockquote>
+            <p class="review-meta">${name}${detail ? `<span>${detail}</span>` : ""}</p>
+          </article>`;
+        })
+        .join("");
+    })
+    .catch(() => {
+      testimonialList.innerHTML = emptyMarkup;
+    });
+}
+
+const recForm = document.getElementById("recommend");
+const recNote = document.getElementById("recNote");
+const recError = document.getElementById("recError");
+if (recForm) {
+  recForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const data = new FormData(recForm);
+    const name = String(data.get("name") || "").trim();
+    const role = String(data.get("role") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const quote = String(data.get("quote") || "").trim();
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!name || !role || !validEmail || !quote) {
+      if (recError) {
+        recError.hidden = false;
+        recError.focus();
+      }
+      return;
+    }
+    if (recError) recError.hidden = true;
+    const publish = data.get("publish") === "yes" ? "Yes — may publish first name and note" : "No — keep this private";
+    const lines = [
+      `Name: ${name}`,
+      `I am a: ${role}`,
+      `Child’s grade: ${data.get("grade") || ""}`,
+      `Town: ${data.get("town") || ""}`,
+      `Email: ${email}`,
+      `Publish on website: ${publish}`,
+      "",
+      quote,
+    ];
+    const message = lines.join("\n");
+    const subject = `Scenic City Learning recommendation — ${name}`;
+    try {
+      await navigator.clipboard.writeText(
+        `${subject}\n\n${message}\n\norangemandimack@yahoo.com`
+      );
+    } catch {
+      /* clipboard may be blocked; mailto still runs */
+    }
+    window.location.href = `mailto:orangemandimack@yahoo.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    if (recNote) recNote.classList.add("show");
+  });
+}
+
 const form = document.getElementById("intake");
 const note = document.getElementById("formNote");
 const error = document.getElementById("formError");

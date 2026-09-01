@@ -37,4 +37,10 @@ window.goatcounter.path = function () {
       send({ path: "click-book", title: "Book form", event: true });
     });
   }
+  const recForm = document.getElementById("recommend");
+  if (recForm) {
+    recForm.addEventListener("submit", () => {
+      send({ path: "click-recommend", title: "Recommendation form", event: true });
+    });
+  }
 })();
