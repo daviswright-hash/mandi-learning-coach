@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Approve reviews · Scenic City Learning</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css?v=20260901b" />
+  <style>
+    .gate, .admin { max-width: 720px; margin: 40px auto; }
+    .admin { display: none; }
+    .admin.is-open { display: block; }
+    .decision {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .decision .btn { flex: 1; min-width: 140px; }
+    .btn-deny { background: #fff; color: var(--navy); border: 1.5px solid var(--navy); }
+    .review-card + .review-card { margin-top: 16px; }
+    .status-ok { color: var(--teal); font-weight: 700; }
+    .status-no { color: #9b2c2c; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main class="section">
+    <div class="wrap gate" id="gate">
+      <p class="section-kicker">Private</p>
+      <h2>Approve reviews</h2>
+      <p>This page is for Mandi. Enter the last four digits of the Google Voice number.</p>
+      <form id="gateForm">
+        <label for="pin">PIN</label>
+        <input id="pin" name="pin" inputmode="numeric" autocomplete="off" required />
+        <p class="form-error" id="gateError" hidden>That PIN does not match.</p>
+        <button class="btn btn-primary" type="submit">Open</button>
+      </form>
+    </div>
+    <div class="wrap admin" id="admin">
+      <p class="section-kicker">Reviews waiting</p>
+      <h2>Read the note. Post it or don’t.</h2>
+      <p class="sub" style="margin-left:0;">Approved notes show on the public Reviews page with first name only. Decline keeps them off the site.</p>
+      <div id="pendingList"></div>
+      <p><a href="index.html#reviews">Back to the website</a></p>
+    </div>
+  </main>
+  <script>
+    const PIN = "3772";
+    const ENDPOINT = "https://formsubmit.co/ajax/1ae1dd38406dc0b8292f9e8cf05f7352";
+    const gate = document.getElementById("gate");
+    const admin = document.getElementById("admin");
+    const list = document.getElementById("pendingList");
+
+    const escapeHtml = (value) =>
+      String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+
+    document.getElementById("gateForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const pin = String(document.getElementById("pin").value || "").trim();
+      const err = document.getElementById("gateError");
+      if (pin !== PIN) {
+        err.hidden = false;
+        return;
+      }
+      err.hidden = true;
+      gate.style.display = "none";
+      admin.classList.add("is-open");
+      sessionStorage.setItem("scl-approve", "1");
+    });
+
+    if (sessionStorage.getItem("scl-approve") === "1") {
+      gate.style.display = "none";
+      admin.classList.add("is-open");
+    }
+
+    const sendDecision = async (item, action, button) => {
+      const original = button.textContent;
+      button.disabled = true;
+      button.textContent = "Sending…";
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            _subject: action === "approve"
+              ? `APPROVE review — ${item.name}`
+              : `DECLINE review — ${item.name}`,
+            _template: "box",
+            _captcha: "false",
+            _cc: "orangemandimack@yahoo.com",
+            _url: "https://sceniccitylearning.com/approve.html",
+            Action: action === "approve" ? "APPROVE — post on the website" : "DECLINE — do not post",
+            Name: item.name,
+            Detail: item.detail,
+            THE_REVIEW: item.quote,
+            id: item.id,
+          }),
+        });
+        const result = await res.json().catch(() => ({}));
+        if (!res.ok || String(result.success) === "false") throw new Error("fail");
+        const card = button.closest(".review-card");
+        card.querySelector(".decision").innerHTML =
+          action === "approve"
+            ? '<p class="status-ok">Marked to post. It will appear on the Reviews page shortly.</p>'
+            : '<p class="status-no">Marked do not post. It will stay off the website.</p>';
+      } catch {
+        button.disabled = false;
+        button.textContent = original;
+        alert("That did not send. Text Davis or (929) 256-3772.");
+      }
+    };
+
+    fetch("pending.json", { cache: "no-store" })
+      .then((res) => (res.ok ? res.json() : Promise.reject()))
+      .then((data) => {
+        const items = (data.items || []).filter((item) => item.status === "pending");
+        if (!items.length) {
+          list.innerHTML = '<div class="review-empty"><strong>No reviews waiting.</strong><p>New ones from the website form will be added here.</p></div>';
+          return;
+        }
+        list.innerHTML = items
+          .map(
+            (item) => `
+          <article class="review-card" data-id="${escapeHtml(item.id)}">
+            <p class="review-mark" aria-hidden="true">“</p>
+            <blockquote>${escapeHtml(item.quote)}</blockquote>
+            <p class="review-meta">${escapeHtml(item.name)}<span>${escapeHtml(item.detail || "")}</span></p>
+            <div class="decision">
+              <button class="btn btn-teal" type="button" data-act="approve">Post on the website</button>
+              <button class="btn btn-deny" type="button" data-act="decline">Don’t post</button>
+            </div>
+          </article>`
+          )
+          .join("");
+        list.querySelectorAll("[data-act]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = btn.closest(".review-card").getAttribute("data-id");
+            const item = items.find((row) => row.id === id);
+            if (item) sendDecision(item, btn.getAttribute("data-act"), btn);
+          });
+        });
+      })
+      .catch(() => {
+        list.innerHTML = '<div class="review-empty"><strong>Could not load waiting reviews.</strong></div>';
+      });
+  </script>
+</body>
+</html>

@@ -158,13 +158,15 @@ if (recForm) {
     const sent = await deliverNotice({
       subject: `Scenic City Learning recommendation — ${name}`,
       fields: {
-        Name: name,
-        Role: role,
-        "Child’s grade": String(data.get("grade") || ""),
+        THE_REVIEW: quote,
+        FROM: name,
+        I_AM_A: role,
+        Grade: String(data.get("grade") || ""),
         Town: String(data.get("town") || ""),
         email,
-        "Publish on website": publish,
-        message: quote,
+        Publish_on_website: publish,
+        HOW_TO_APPROVE:
+          "Open https://sceniccitylearning.com/approve.html — PIN is the last four digits of the Google Voice number (3772). Tap Post on the website or Don’t post.",
       },
       button: recForm.querySelector('button[type="submit"]'),
       noteEl: recNote,

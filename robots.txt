@@ -3,3 +3,6 @@ Allow: /
 
 Sitemap: https://sceniccitylearning.com/sitemap.xml
 Disallow: /facebook/
+Disallow: /approve.html
+Disallow: /pending.json
+Disallow: /kit.html
