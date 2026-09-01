@@ -1,4 +1,11 @@
 {
   "_howToPublish": "Add an object to items for each approved note. quote, name (first name only), and detail are required. date is optional (YYYY-MM).",
-  "items": []
+  "items": [
+    {
+      "quote": "Mrs. Thurmond was my daughter’s 4th grade teacher. My daughter is dyslexic and reading had been a real struggle until that year. That was when she actually learned to read. I believe it happened because of the energy Mrs. Thurmond poured into her and the kindness she just naturally has. She is a genuinely good person. My daughter still brings up her sweet teacher from time to time. I would recommend her to anyone.",
+      "name": "Jessica",
+      "detail": "Parent of a 4th grader · Chattanooga",
+      "date": "2026-09"
+    }
+  ]
 }

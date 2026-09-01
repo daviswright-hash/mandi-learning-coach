@@ -7,7 +7,7 @@
   <meta name="referrer" content="no-referrer" />
   <title>Reviews desk · Scenic City Learning</title>
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="../../styles.css?v=20260901c" />
+  <link rel="stylesheet" href="../../styles.css?v=20260901d" />
   <style>
     .desk { max-width: 720px; margin: 40px auto 64px; }
     .admin { display: none; }
@@ -145,7 +145,7 @@
         const card = button.closest(".review-card");
         card.querySelector(".decision").innerHTML =
           action === "approve"
-            ? '<p class="status-ok">Approved. It will appear on the Reviews page shortly.</p>'
+            ? '<p class="status-ok">Approved. It will appear on the Reviews page soon.</p>'
             : '<p class="status-no">Denied. It will stay off the website.</p>';
       } catch {
         button.disabled = false;
@@ -190,6 +190,33 @@
       });
     };
 
+    const b64urlToUtf8 = (value) => {
+      const padded = String(value || "").replace(/-/g, "+").replace(/_/g, "/");
+      const b64 = padded + "===".slice((padded.length + 3) % 4);
+      const bin = atob(b64);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return new TextDecoder().decode(bytes);
+    };
+
+    const itemFromHash = () => {
+      const match = String(location.hash || "").match(/[#&]r=([^&]+)/);
+      if (!match) return null;
+      try {
+        const parsed = JSON.parse(b64urlToUtf8(decodeURIComponent(match[1])));
+        if (!parsed || !parsed.quote || !parsed.name) return null;
+        return {
+          id: parsed.id || "from-email",
+          quote: parsed.quote,
+          name: parsed.name,
+          detail: parsed.detail || "",
+          status: "pending",
+        };
+      } catch {
+        return null;
+      }
+    };
+
     const loadBox = async (passNorm) => {
       const res = await fetch(BOX_URL, { cache: "no-store" });
       if (!res.ok) throw new Error("missing box");
@@ -199,10 +226,23 @@
 
     const tryUnlock = async (passNorm) => {
       const items = await loadBox(passNorm);
+      const fromEmail = itemFromHash();
+      const merged = [];
+      if (fromEmail) merged.push(fromEmail);
+      (items || []).forEach((item) => {
+        if (
+          fromEmail &&
+          item.name === fromEmail.name &&
+          item.quote === fromEmail.quote
+        ) {
+          return;
+        }
+        merged.push(item);
+      });
       sessionStorage.setItem(STORE_KEY, passNorm);
       sessionStorage.removeItem(FAIL_KEY);
       openAdmin();
-      renderItems(items);
+      renderItems(merged);
     };
 
     gateForm.addEventListener("submit", async (event) => {

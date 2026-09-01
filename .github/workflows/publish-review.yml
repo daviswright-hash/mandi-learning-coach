@@ -1,0 +1,68 @@
+name: Publish approved review
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: First name only
+        required: true
+        type: string
+      quote:
+        description: Review text
+        required: true
+        type: string
+      detail:
+        description: Role and town
+        required: false
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: publish-review
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Append approved review
+        env:
+          NAME: ${{ inputs.name }}
+          QUOTE: ${{ inputs.quote }}
+          DETAIL: ${{ inputs.detail }}
+        run: |
+          python3 << 'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          path = Path("testimonials.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          items = data.get("items") or []
+          name = os.environ.get("NAME", "").strip()
+          quote = os.environ.get("QUOTE", "").strip()
+          detail = os.environ.get("DETAIL", "").strip()
+          if not name or not quote:
+              raise SystemExit("missing name or quote")
+          if any(i.get("name") == name and i.get("quote") == quote for i in items):
+              print("already published")
+          else:
+              items.insert(0, {
+                  "quote": quote,
+                  "name": name,
+                  "detail": detail,
+                  "date": datetime.now(timezone.utc).strftime("%Y-%m"),
+              })
+              data["items"] = items
+              path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+              print("appended")
+          PY
+      - name: Commit and push
+        run: |
+          git config user.name "Scenic City Learning"
+          git config user.email "daviswright@outlook.com"
+          git add testimonials.json
+          if git diff --staged --quiet; then
+            echo "No change"
+          else
+            git commit -m "Publish an approved review."
+            git push
+          fi

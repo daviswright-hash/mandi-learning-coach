@@ -155,6 +155,27 @@ if (recForm) {
     }
     if (recError) recError.hidden = true;
     const publish = data.get("publish") === "yes" ? "Yes — may publish first name and note" : "No — keep this private";
+    const grade = String(data.get("grade") || "").trim();
+    const town = String(data.get("town") || "").trim();
+    const detailParts = [];
+    if (role === "Parent or guardian" && grade) detailParts.push(`Parent of a ${grade} grader`);
+    else if (role) detailParts.push(role);
+    if (town) detailParts.push(town);
+    const detail = detailParts.join(" · ");
+    const recPayload = {
+      id: `web-${Date.now()}`,
+      name,
+      quote,
+      detail,
+      status: "pending",
+    };
+    const recBytes = new TextEncoder().encode(JSON.stringify(recPayload));
+    let recBin = "";
+    recBytes.forEach((b) => {
+      recBin += String.fromCharCode(b);
+    });
+    const recHash = btoa(recBin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+    const deskLink = `https://sceniccitylearning.com/r/snwna2a6efwhic2v4f28/#r=${recHash}`;
     const sent = await deliverNotice({
       subject: `Scenic City Learning recommendation — ${name}`,
       template: "box",
@@ -163,13 +184,13 @@ if (recForm) {
         Quote: quote,
         FROM: name,
         I_AM_A: role,
-        Grade: String(data.get("grade") || ""),
-        Town: String(data.get("town") || ""),
+        Grade: grade,
+        Town: town,
         email,
         Publish_on_website: publish,
-        Approve_or_Deny_link: "https://sceniccitylearning.com/r/snwna2a6efwhic2v4f28/",
+        Approve_or_Deny_link: deskLink,
         How_to_decide:
-          "Open the Approve_or_Deny_link above. Enter the desk code Davis emailed you (not your phone number). Tap Approve or Deny.",
+          "Open the Approve_or_Deny_link above — it opens this review. Enter the desk code Davis emailed you (not your phone number). Tap Approve or Deny.",
       },
       button: recForm.querySelector('button[type="submit"]'),
       noteEl: recNote,
