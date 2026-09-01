@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260826c" />
+  <link rel="stylesheet" href="styles.css?v=20260901a" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -289,7 +289,9 @@
           </div>
           <form id="recommend" novalidate>
             <h3>Leave a recommendation</h3>
-            <p class="review-form-lead">Write in your own words. Submit below — it emails Mandi. Nothing is posted until she confirms.</p>
+            <p class="review-form-lead">Write in your own words. Submit below — it emails Mandi right away. Nothing is posted on the page until she confirms.</p>
+            <label class="hp" for="rec-company">Company</label>
+            <input class="hp" id="rec-company" name="company" tabindex="-1" autocomplete="off" />
             <label for="rec-name">Your first name</label>
             <input id="rec-name" name="name" required autocomplete="given-name" />
             <label for="rec-role">I am a</label>
@@ -321,7 +323,7 @@
             </label>
             <p class="form-error" id="recError" hidden tabindex="-1">Please add your first name, a valid email, who you are, and your recommendation.</p>
             <button class="btn btn-primary" type="submit">Send recommendation</button>
-            <p class="form-note" id="recNote">If an email window didn’t open, the message is copied — paste it to orangemandimack@yahoo.com or text (929) 256-3772.</p>
+            <p class="form-note" id="recNote" role="status"></p>
           </form>
         </div>
       </div>
@@ -358,7 +360,7 @@
           </details>
           <details>
             <summary>How do we start?</summary>
-            <p>Call or text (929) 256-3772, email orangemandimack@yahoo.com, or send the form below. Tell us the grade and what you’d like help with.</p>
+            <p>Call or text (929) 256-3772, email orangemandimack@yahoo.com, or send the form below. The form emails Mandi directly — you don’t have to open a mail app. Tell us the grade and what you’d like help with.</p>
           </details>
           <details>
             <summary>Can I leave a review?</summary>
@@ -372,7 +374,7 @@
       <div class="wrap">
         <p class="section-kicker center">Let’s talk</p>
         <h2 class="center">Book a session</h2>
-        <p class="sub center">The form opens an email to Mandi. You can also call or text anytime. Sessions are at her Red Bank house; you’ll get the address when the time is confirmed.</p>
+        <p class="sub center">Send the form and it emails Mandi right away — you do not need your own mail app. You can also call or text anytime. Sessions are at her Red Bank house; you’ll get the address when the time is confirmed.</p>
         <div class="contact-grid">
           <div class="contact-card">
             <p class="contact-line">✉️ <a href="mailto:orangemandimack@yahoo.com">orangemandimack@yahoo.com</a></p>
@@ -382,6 +384,8 @@
             <p>Evenings and flexible times by appointment. First message: grade, what you’d like help with, and two days that could work.</p>
           </div>
           <form id="intake" novalidate>
+            <label class="hp" for="company">Company</label>
+            <input class="hp" id="company" name="company" tabindex="-1" autocomplete="off" />
             <label for="parent">Your name</label>
             <input id="parent" name="parent" required autocomplete="name" />
             <label for="email">Email</label>
@@ -415,7 +419,7 @@
             <textarea id="message" name="message" placeholder="Strengths, sticking points, what school has felt like…"></textarea>
             <p class="form-error" id="formError" hidden tabindex="-1">Please add your name, a valid email, and a grade.</p>
             <button class="btn btn-primary" type="submit">Send inquiry</button>
-            <p class="form-note" id="formNote">If an email window didn’t open, the message is copied — paste it to orangemandimack@yahoo.com or text (929) 256-3772.</p>
+            <p class="form-note" id="formNote" role="status"></p>
           </form>
         </div>
       </div>
