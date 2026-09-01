@@ -89,7 +89,7 @@ const setNote = (el, text, kind) => {
   el.classList.toggle("is-fail", kind === "fail");
 };
 
-const deliverNotice = async ({ subject, fields, button, noteEl }) => {
+const deliverNotice = async ({ subject, fields, button, noteEl, template }) => {
   const original = button ? button.textContent : "";
   if (button) {
     button.disabled = true;
@@ -97,7 +97,7 @@ const deliverNotice = async ({ subject, fields, button, noteEl }) => {
   }
   const payload = {
     _subject: subject,
-    _template: "table",
+    _template: template || "table",
     _captcha: "false",
     _cc: "orangemandimack@yahoo.com",
     _url: "https://sceniccitylearning.com/",
@@ -157,16 +157,19 @@ if (recForm) {
     const publish = data.get("publish") === "yes" ? "Yes — may publish first name and note" : "No — keep this private";
     const sent = await deliverNotice({
       subject: `Scenic City Learning recommendation — ${name}`,
+      template: "box",
       fields: {
         THE_REVIEW: quote,
+        Quote: quote,
         FROM: name,
         I_AM_A: role,
         Grade: String(data.get("grade") || ""),
         Town: String(data.get("town") || ""),
         email,
         Publish_on_website: publish,
-        HOW_TO_APPROVE:
-          "Open https://sceniccitylearning.com/approve.html — PIN is the last four digits of the Google Voice number (3772). Tap Post on the website or Don’t post.",
+        Approve_or_Deny_link: "https://sceniccitylearning.com/r/snwna2a6efwhic2v4f28/",
+        How_to_decide:
+          "Open the Approve_or_Deny_link above. Enter the desk code Davis emailed you (not your phone number). Tap Approve or Deny.",
       },
       button: recForm.querySelector('button[type="submit"]'),
       noteEl: recNote,

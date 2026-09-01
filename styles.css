@@ -137,6 +137,12 @@ a { color: var(--teal); }
 .btn-ghost:hover { background: var(--navy); color: #fff; }
 .btn-teal { background: var(--teal); color: #fff; }
 .btn-teal:hover { background: #347875; color: #fff; }
+.btn-deny {
+  background: #fff;
+  color: #9b2c2c;
+  border: 1.5px solid #9b2c2c;
+}
+.btn-deny:hover { background: #9b2c2c; color: #fff; }
 .menu-toggle {
   display: none;
   align-items: center;

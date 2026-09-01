@@ -6,3 +6,4 @@ Disallow: /facebook/
 Disallow: /approve.html
 Disallow: /pending.json
 Disallow: /kit.html
+Disallow: /r/

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Reviews desk · Scenic City Learning</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../styles.css?v=20260901c" />
+  <style>
+    .desk { max-width: 720px; margin: 40px auto 64px; }
+    .admin { display: none; }
+    .admin.is-open { display: block; }
+    .decision {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .decision .btn { flex: 1; min-width: 140px; }
+    .review-card + .review-card { margin-top: 16px; }
+    .status-ok { color: var(--teal); font-weight: 700; margin: 16px 0 0; }
+    .status-no { color: #9b2c2c; font-weight: 700; margin: 16px 0 0; }
+    .desk-lead { color: var(--muted); }
+    .gate form { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <main class="section">
+    <div class="wrap desk gate" id="gate">
+      <p class="section-kicker">Private</p>
+      <h2>Approve or deny a review</h2>
+      <p class="desk-lead">This page is for Mandi. Enter the desk code from your email — it is not your phone number.</p>
+      <form id="gateForm">
+        <label for="code">Desk code</label>
+        <input id="code" name="code" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" required />
+        <p class="form-error" id="gateError" hidden>That code does not match.</p>
+        <button class="btn btn-primary" type="submit">Unlock</button>
+      </form>
+    </div>
+    <div class="wrap desk admin" id="admin">
+      <p class="section-kicker">Reviews waiting</p>
+      <h2>Read the note. Approve or deny.</h2>
+      <p class="desk-lead">Approve posts the first name and words on the public Reviews page. Deny keeps it off the website.</p>
+      <div id="pendingList"></div>
+      <p><a href="https://sceniccitylearning.com/" rel="noreferrer">Back to the website</a></p>
+    </div>
+  </main>
+  <script>
+    const ENDPOINT = "https://formsubmit.co/ajax/1ae1dd38406dc0b8292f9e8cf05f7352";
+    const BOX_URL = "box.json";
+    const MAGIC = "scl-desk-v2";
+    const MAX_TRIES = 6;
+    const STORE_KEY = "scl-desk-k";
+    const FAIL_KEY = "scl-desk-fails";
+    const gate = document.getElementById("gate");
+    const admin = document.getElementById("admin");
+    const list = document.getElementById("pendingList");
+    const gateForm = document.getElementById("gateForm");
+    const gateError = document.getElementById("gateError");
+    const codeInput = document.getElementById("code");
+
+    const escapeHtml = (value) =>
+      String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+
+    const normalize = (value) => String(value || "").toLowerCase().replace(/[\s\-]/g, "");
+
+    const b64ToBytes = (b64) => {
+      const bin = atob(b64);
+      const out = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+      return out;
+    };
+
+    const failCount = () => Number(sessionStorage.getItem(FAIL_KEY) || "0") || 0;
+
+    const lockIfNeeded = () => {
+      if (failCount() < MAX_TRIES) return false;
+      codeInput.disabled = true;
+      gateForm.querySelector("button").disabled = true;
+      gateError.hidden = false;
+      gateError.textContent = "Too many tries. Close this tab and open the link from your email, or text Davis.";
+      return true;
+    };
+
+    const openAdmin = () => {
+      gate.style.display = "none";
+      admin.classList.add("is-open");
+    };
+
+    const decryptItems = async (passNorm, box) => {
+      const salt = b64ToBytes(box.salt);
+      const iv = b64ToBytes(box.iv);
+      const data = b64ToBytes(box.data);
+      const baseKey = await crypto.subtle.importKey(
+        "raw",
+        new TextEncoder().encode(passNorm),
+        "PBKDF2",
+        false,
+        ["deriveKey"]
+      );
+      const key = await crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt, iterations: Number(box.iter) || 120000, hash: "SHA-256" },
+        baseKey,
+        { name: "AES-GCM", length: 256 },
+        false,
+        ["decrypt"]
+      );
+      const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, data);
+      const parsed = JSON.parse(new TextDecoder().decode(pt));
+      if (parsed.ok !== MAGIC || !Array.isArray(parsed.items)) throw new Error("bad box");
+      return parsed.items;
+    };
+
+    const sendDecision = async (item, action, button) => {
+      const original = button.textContent;
+      button.disabled = true;
+      button.textContent = "Sending…";
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            _subject: action === "approve"
+              ? `APPROVE review — ${item.name}`
+              : `DENY review — ${item.name}`,
+            _template: "box",
+            _captcha: "false",
+            _cc: "orangemandimack@yahoo.com",
+            _url: "https://sceniccitylearning.com/",
+            Action: action === "approve" ? "APPROVE — post on the website" : "DENY — do not post",
+            Name: item.name,
+            Detail: item.detail,
+            THE_REVIEW: item.quote,
+            id: item.id,
+          }),
+        });
+        const result = await res.json().catch(() => ({}));
+        if (!res.ok || String(result.success) === "false") throw new Error("fail");
+        const card = button.closest(".review-card");
+        card.querySelector(".decision").innerHTML =
+          action === "approve"
+            ? '<p class="status-ok">Approved. It will appear on the Reviews page shortly.</p>'
+            : '<p class="status-no">Denied. It will stay off the website.</p>';
+      } catch {
+        button.disabled = false;
+        button.textContent = original;
+        alert("That did not send. Text Davis so the review is not missed.");
+      }
+    };
+
+    const renderItems = (items) => {
+      const pending = (items || []).filter((item) => item.status === "pending");
+      if (!pending.length) {
+        list.innerHTML = '<div class="review-empty"><strong>No reviews waiting.</strong><p>New ones from the website form will be added here.</p></div>';
+        return;
+      }
+      list.innerHTML = pending
+        .map(
+          (item) => `
+        <article class="review-card" data-id="${escapeHtml(item.id)}">
+          <p class="review-mark" aria-hidden="true">“</p>
+          <blockquote>${escapeHtml(item.quote)}</blockquote>
+          <p class="review-meta">${escapeHtml(item.name)}<span>${escapeHtml(item.detail || "")}</span></p>
+          <div class="decision">
+            <button class="btn btn-teal" type="button" data-act="approve">Approve</button>
+            <button class="btn btn-deny" type="button" data-act="deny">Deny</button>
+          </div>
+        </article>`
+        )
+        .join("");
+      list.querySelectorAll("[data-act]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.closest(".review-card").getAttribute("data-id");
+          const item = pending.find((row) => row.id === id);
+          if (!item) return;
+          const action = btn.getAttribute("data-act");
+          const ok = window.confirm(
+            action === "approve"
+              ? `Approve this review from ${item.name}? It will appear on the public Reviews page.`
+              : `Deny this review from ${item.name}? It will stay off the website.`
+          );
+          if (ok) sendDecision(item, action, btn);
+        });
+      });
+    };
+
+    const loadBox = async (passNorm) => {
+      const res = await fetch(BOX_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("missing box");
+      const box = await res.json();
+      return decryptItems(passNorm, box);
+    };
+
+    const tryUnlock = async (passNorm) => {
+      const items = await loadBox(passNorm);
+      sessionStorage.setItem(STORE_KEY, passNorm);
+      sessionStorage.removeItem(FAIL_KEY);
+      openAdmin();
+      renderItems(items);
+    };
+
+    gateForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (lockIfNeeded()) return;
+      const passNorm = normalize(codeInput.value);
+      const button = gateForm.querySelector("button");
+      button.disabled = true;
+      gateError.hidden = true;
+      try {
+        await tryUnlock(passNorm);
+      } catch {
+        sessionStorage.setItem(FAIL_KEY, String(failCount() + 1));
+        gateError.hidden = false;
+        gateError.textContent = "That code does not match.";
+        if (!lockIfNeeded()) button.disabled = false;
+        return;
+      }
+      button.disabled = false;
+    });
+
+    (async () => {
+      lockIfNeeded();
+      const saved = normalize(sessionStorage.getItem(STORE_KEY) || "");
+      if (!saved) return;
+      try {
+        await tryUnlock(saved);
+      } catch {
+        sessionStorage.removeItem(STORE_KEY);
+      }
+    })();
+  </script>
+</body>
+</html>
